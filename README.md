@@ -27,6 +27,9 @@ For testing purposes the AA entry point can be changed to a specified Ethereum a
 $ python process.py `solc --bin example.sol | tail -1` -e 0x04D867459000b8371B7D88c2De900F6a4C074a00
 ```
 
+After deploying the modified bytecode, the contract can be used as before via the entry point address.
+Calls from any other address (including read access) will fail.
+
 For analysis of the bytecode [this](https://ethervm.io/decompile) decompilation tool can be useful.
 Bytecodes for the `example.sol`:
 ```
