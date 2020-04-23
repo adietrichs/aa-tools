@@ -1,5 +1,4 @@
 import argparse
-from types import SimpleNamespace
 
 from classes import *
 from opcodes import *
@@ -32,7 +31,7 @@ def split_metadata(code_bytes: Bytes) -> (Bytes, Bytes):
     return code_bytes, metadata_bytes
 
 
-def split_and_analyze_constructor(code_bytes: Bytes) -> (SimpleNamespace, Bytes):
+def split_and_analyze_constructor(code_bytes: Bytes) -> (Bytes, Bytecode, int):
     constructor_bytecode = Bytecode.frombytes(code_bytes, stop_opcodes={Op.CODECOPY})
     assert constructor_bytecode[-1].opcode == Op.CODECOPY
     PUSH_idxs = [
