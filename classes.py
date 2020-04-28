@@ -1,5 +1,5 @@
 import struct
-from typing import Union, List, TypeVar, Type, Set
+from typing import List, Set, Type, TypeVar, Union
 
 from opcodes import *
 
@@ -65,8 +65,8 @@ class Bytecode:
 class BytecodeElement:
     def __init__(self, opcode: Op, data: "Bytes" = None):
         self.opcode = opcode
-        if Op.PUSH1 <= opcode <= Op.PUSH32:
-            assert len(data) == opcode.value - Op.PUSH1.value + 1
+        if opcode in PUSH_OPCODES:
+            assert len(data) == opcode.push_length()
         else:
             assert data is None
         self.data = data
